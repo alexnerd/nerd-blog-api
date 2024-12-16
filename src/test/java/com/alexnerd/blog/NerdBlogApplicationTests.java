@@ -1,10 +1,10 @@
-package com.alexnerd.nerdblog;
+package com.alexnerd.blog;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class NerdblogApplicationTests {
+class NerdBlogApplicationTests {
 
 	@Test
 	void contextLoads() {
