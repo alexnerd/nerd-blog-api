@@ -20,7 +20,8 @@ public class CompilerJS {
 
     @PostConstruct
     public void init() {
-        try (Reader handlebarsReader = this.loadHandlebars()) {
+        try (Reader handlebarsReader = new InputStreamReader(Thread.currentThread().getContextClassLoader()
+                .getResourceAsStream("handlebars-v4.7.7.js"))) {
             handleBars = Source.newBuilder(JAVA_SCRIPT, handlebarsReader, "Handlebars").build();
         } catch (Exception ex) {
             throw new IllegalStateException("Cannot load Handlebars", ex);
@@ -45,13 +46,6 @@ public class CompilerJS {
                 const compiledTemplate = Handlebars.compile(templateContent);
                 compiledTemplate(postAsJSON);
                 """;
-    }
-
-    private Reader loadHandlebars() throws IOException {
-        try (InputStream stream = Thread.currentThread().getContextClassLoader()
-                .getResourceAsStream("handlebars-v4.7.7.js")) {
-            return new InputStreamReader(stream);
-        }
     }
 }
 

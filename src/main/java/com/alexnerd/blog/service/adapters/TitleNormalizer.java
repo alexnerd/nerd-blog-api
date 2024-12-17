@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class TitleNormalizer {
 
-    @Value("nerdblog.title.separator")
+    @Value("${nerdblog.title.separator}")
     private String titleSeparator;
 
     private int codePointSeparator;

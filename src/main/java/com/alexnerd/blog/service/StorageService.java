@@ -18,7 +18,7 @@ import java.util.stream.Stream;
 
 @Service
 public class StorageService {
-    @Value("root.storage.dir")
+    @Value("${nerdblog.root.storage.dir}")
     private String baseDir;
 
     private Path storageDirectoryPath;
