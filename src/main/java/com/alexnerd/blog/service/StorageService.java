@@ -56,7 +56,7 @@ public class StorageService {
 
     private Path getContentDirectoryPath(Lang lang, ContentType contentType) {
         return Path.of(baseDir)
-                .resolve(lang.name())
+                .resolve(lang.toString().toLowerCase())
                 .resolve(contentType.getBaseDir());
     }
 
@@ -120,7 +120,7 @@ public class StorageService {
 
     private Path constructContentPath(Lang lang, ContentType type, String date, String fileName) {
         Path contentPath = this.getStorageDirectoryPath()
-                .resolve(lang.name())
+                .resolve(lang.toString().toLowerCase())
                 .resolve(type.getBaseDir());
         String[] split = date.split("-");
         for (String s : split) {
