@@ -17,7 +17,7 @@ public class BlogController {
     private BlogService blogService;
 
     @Bulkhead(name="BlogControllerApi")
-    @GetMapping("post/{date}/{title}")
+    @GetMapping(value = "post/{date}/{title}", produces = "text/plain;charset=UTF-8")
     public String getPost(@RequestParam(name = "lang", defaultValue = "RU") Lang lang,
                           @RequestParam(name = "type", defaultValue = "POST") ContentType type,
                           @PathVariable("date") String date,
@@ -26,7 +26,7 @@ public class BlogController {
     }
 
     @Bulkhead(name="BlogControllerApi")
-    @GetMapping("last")
+    @GetMapping(value = "last", produces = "text/plain;charset=UTF-8")
     public String getLast(@RequestParam(name = "lang", defaultValue = "RU") Lang lang,
                           @RequestParam(name = "type", defaultValue = "POST") ContentType type,
                           @RequestParam("limit") @Min(1) @Max(10) int limit) {
