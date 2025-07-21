@@ -24,19 +24,20 @@ public interface TemplateCollection {
             """;
 
         public static final String POST = """
-            <div class="blog-post">
-              <h2 class="post-header">
-                {{title}}
-              </h2>
-              <section class="meta_data">
-                <span>Рубрика: {{rubric}}</span>
-                <span>{{createDate}}</span>
-              </section>
-              <section class="content">
-                  {{{content}}}
-              </section>
-            </div>
-            """;
+                <meta id="post-head-description" name="description" content="{{description}}"/>
+                <div class="blog-post">
+                  <h2 id="post-head-title" class="post-header">
+                    {{title}}
+                  </h2>
+                  <section class="meta_data">
+                    <span>Рубрика: {{rubric}}</span>
+                    <span>{{createDate}}</span>
+                  </section>
+                  <section class="content">
+                      {{{content}}}
+                  </section>
+                </div>
+                """;
 
         public static final String LAST_ARTICLES = """
             <li>
