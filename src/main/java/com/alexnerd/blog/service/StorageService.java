@@ -32,10 +32,6 @@ public class StorageService {
         this.storageDirectoryPath = Path.of(baseDir);
     }
 
-    public Path getStorageDirectoryPath() {
-        return this.storageDirectoryPath;
-    }
-
     String getContent(Lang lang, ContentType type, String date, String fileName) throws FileNotFoundException {
         Path contentPath = this.constructContentPath(lang, type, date, fileName);
 
@@ -119,7 +115,7 @@ public class StorageService {
     }
 
     private Path constructContentPath(Lang lang, ContentType type, String date, String fileName) {
-        Path contentPath = this.getStorageDirectoryPath()
+        Path contentPath = storageDirectoryPath
                 .resolve(lang.toString().toLowerCase())
                 .resolve(type.getBaseDir());
         String[] split = date.split("-");
