@@ -3,6 +3,7 @@ package com.alexnerd.blog.service;
 import com.alexnerd.blog.service.enums.ContentType;
 import com.alexnerd.blog.service.enums.Lang;
 import jakarta.annotation.PostConstruct;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
+@Slf4j
 @Service
 public class StorageService {
     @Value("${nerdblog.root.storage.dir}")
@@ -36,7 +38,8 @@ public class StorageService {
         Path contentPath = this.constructContentPath(lang, type, date, fileName);
 
         if (Files.notExists(contentPath) || !Files.isRegularFile(contentPath)) {
-            throw new FileNotFoundException("Can't fetch content: " + fileName);
+            log.error("Can't find contentPath: {}", contentPath);
+            throw new FileNotFoundException("Can't find contentPath: " + contentPath);
         }
 
         return this.readContent(contentPath);
